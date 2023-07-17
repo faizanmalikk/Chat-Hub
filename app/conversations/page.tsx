@@ -1,17 +1,21 @@
-'use client'
-import { signOut } from 'next-auth/react'
-import React from 'react'
+'use client';
 
-const page = () => {
-    return (
-        <div>
-            <button
-                onClick={() => signOut()}
-            >
-                logout
-            </button>
-        </div>
-    )
+import clsx from "clsx";
+
+import EmptyState from "../components/EmptyState";
+import useConversation from "../hooks/useConversations";
+
+const Home = () => {
+  const { isOpen } = useConversation();
+
+  return (
+    <div className={clsx(
+      'lg:pl-[300px] h-full lg:block', 
+      isOpen ? 'block' : 'hidden'
+    )}>
+      <EmptyState />
+    </div>
+  )
 }
 
-export default page
+export default Home;
